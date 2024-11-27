@@ -1,0 +1,70 @@
+Blb_ student,ý
+B_t zvíře,ý
+V_,y
+P_šou vítr,y
+B_lý kůň,i
+L_ška v lese,y
+Sm_ch zněl hlasitě,i
+V_křik se ozval,y
+D_ky za pomoc,i
+M_ška běží po poli,i
+Velk_ balík,y
+Vš_chni si sedli,i
+Nap_šte odpověď,i
+Zábav_ příběh,y
+Př_šel do třídy,i
+Rozhodl_ se rychle,i
+B_t domov je krásné,y
+Snědl_ oběd rychle,y
+Mal_ kluk se směje,y
+Vyprávěl_ nám pohádku,y
+Nap_sali jsme dopis,i
+Bl_skání hromů bylo hlasité,y
+Strom měl mal_ listy,y
+V_praví nám zajímavý příběh,y
+Obl_kli jsme si nové šaty,y
+Z_tra půjdeme na výlet,i
+St_žovali si na horko,i
+Pod stromem byla klidn_ zahrada,a
+M_kli jsme unaveně,i
+Plav_ pták na vodě,e
+P_še píseň hlasitě,i
+Křiklav_ barvy na obraze,e
+Jezd_l na kole po lese,i
+Prav_ český med,y
+Chtěli b_t venku,y
+Zv_lají hlasitě,y
+Nap_lnili misku ovocem,i
+Chytr_ děti hrály ve škole,y
+L_čili dlouhou nemoc,i
+V_te jak to bylo?,i
+Z_ložitý problém přemýšl_ nad ním,i
+D_razně se vyjádřili,i
+Ostrý hrot jehl_,y
+St_kali na zem vodu,y
+Hl_dka stála na místě,i
+Bl_štivý diamant byl krásný,y
+Skákal do hlubin řek_,y
+Na nádraží jezd_l vlaky,i
+Pohádkov_ princ zachránil princeznu,y
+P_šný král se uklonil,i
+Nap_sali domácí úkol,i
+Z_pali dlouhou dobu,i
+V_křik byl slyšet zdálky,i
+Čekal_ na autobus ve městě,y
+Bež_ po trávníku rychle,i
+D_sný den skončil pozdě,i
+Nap_l nápoj z hrnku,i
+St_pali po strmém kopci,u
+Obdivoval_ krásnou krajinu,i
+Byl_ u divadla na představení,y
+Hádal_ se mezi sebou,y
+M_ření vzdáleností bylo přesné,i
+Představ_l si novou situaci,i
+Sledoval_ tiché hvězdy,i
+Rozl_tli se ptáci po obloze,i
+Obl_bené hračky dětí,y
+Nap_navé dobrodružství,i
+Pamatoval_ si každou chybu,i
+Vybral_ si nejlepší možnost,y
+Šetřil_ na nový dům,i
