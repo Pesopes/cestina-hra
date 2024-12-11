@@ -1,5 +1,6 @@
 import pygame
 import sys
+from PIL import Image, ImageDraw, ImageFont
 
 # Inicializace Pygame
 pygame.init()
@@ -20,6 +21,7 @@ GRAY = (50, 50, 50)
 LIGHT_BLUE = (173, 216, 230)
 GREEN = (34, 139, 34)
 
+
 # Načtení dat z fraze.txt
 def load_phrases(file):
     phrases = []
@@ -33,19 +35,27 @@ def load_phrases(file):
         sys.exit()
     return phrases
 
-# Menu pro výběr času
+
+# Menu pro výběr času a zadání jména
 def show_menu():
     menu_running = True
+    user_name = ""
     while menu_running:
         screen.fill(LIGHT_BLUE)
-        title_text = font.render("Vyberte délku hry", True, BLUE)
-        screen.blit(title_text, (WIDTH // 4, HEIGHT // 3))
+        title_text = font.render("Vyberte délku hry a zadejte své jméno", True, BLUE)
+        screen.blit(title_text, (WIDTH // 8, HEIGHT // 4))
 
         # Tlačítka pro výběr času
         button_1min = pygame.Rect(150, 400, 200, 100)
         button_2min = pygame.Rect(450, 400, 200, 100)
         draw_button(button_1min, "1 minuta", BLUE)
         draw_button(button_2min, "2 minuty", RED)
+
+        # Textové pole pro zadání jména
+        input_box = pygame.Rect(250, 300, 300, 50)
+        pygame.draw.rect(screen, WHITE, input_box)
+        name_surface = font.render(user_name, True, BLACK)
+        screen.blit(name_surface, (input_box.x + 10, input_box.y + 10))
 
         pygame.display.flip()
 
@@ -54,11 +64,20 @@ def show_menu():
             if event.type == pygame.QUIT:
                 menu_running = False
             if event.type == pygame.MOUSEBUTTONDOWN:
-                if button_1min.collidepoint(event.pos):
-                    return 60  # 1 minuta
-                elif button_2min.collidepoint(event.pos):
-                    return 120  # 2 minuty
+                if button_1min.collidepoint(event.pos) and user_name:
+                    return user_name, 60  # 1 minuta
+                elif button_2min.collidepoint(event.pos) and user_name:
+                    return user_name, 120  # 2 minuty
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RETURN:
+                    if user_name:
+                        return user_name, 60  # Defaultní čas 1 minuta při stisknutí Enter
+                elif event.key == pygame.K_BACKSPACE:
+                    user_name = user_name[:-1]
+                else:
+                    user_name += event.unicode
         clock.tick(30)
+
 
 # Funkce pro vykreslení tlačítek
 def draw_button(rect, text, color):
@@ -69,6 +88,7 @@ def draw_button(rect, text, color):
         (rect.x + (rect.width - text_surface.get_width()) // 2,
          rect.y + (rect.height - text_surface.get_height()) // 2)
     )
+
 
 # Funkce pro zobrazení timeru
 def draw_timer(time_left, total_time):
@@ -85,13 +105,16 @@ def draw_timer(time_left, total_time):
     time_text = font.render(f"Čas: {time_left}s", True, BLACK)
     screen.blit(time_text, (WIDTH // 4 + (progress_width - time_text.get_width()) // 2, 60))
 
+
 # Funkce pro uložení výsledků
-def save_results(file, results, score, total_phrases):
+def save_results(file, user_name, results, score, total_phrases):
     with open(file, "w", encoding="utf-8") as f:
-        f.write(f"Skóre: {score}/{len(results)}\n")
+        f.write(f"Jméno: {user_name}\n")
+        f.write(f"Skóre: {score}/{total_phrases}\n")
         for phrase, correct_answer, user_answer in results:
             result = "správně" if correct_answer == user_answer else "špatně"
             f.write(f"{phrase} -> správně: {correct_answer}, odpověď: {user_answer} ({result})\n")
+
 
 # Funkce pro převod písmen
 def convert_letter(letter):
@@ -101,6 +124,33 @@ def convert_letter(letter):
         return "i"
     return letter
 
+
+def create_diploma(user_name, score, total_phrases):
+    width, height = 800, 600
+    diploma = Image.new("RGB", (width, height), "white")
+    draw = ImageDraw.Draw(diploma)
+
+    # Fonty
+    title_font = ImageFont.truetype("arial.ttf", 50)
+    text_font = ImageFont.truetype("arial.ttf", 30)
+
+    # Texty
+    title_text = "Diplom"
+    name_text = f"Jméno: {user_name}"
+    score_text = f"Skóre: {score}/{total_phrases}"
+
+    # Pozice textu
+    title_bbox = draw.textbbox((0, 0), title_text, font=title_font)
+    name_bbox = draw.textbbox((0, 0), name_text, font=text_font)
+    score_bbox = draw.textbbox((0, 0), score_text, font=text_font)
+
+    draw.text(((width - title_bbox[2]) // 2, height // 4), title_text, font=title_font, fill="black")
+    draw.text(((width - name_bbox[2]) // 2, height // 2), name_text, font=text_font, fill="black")
+    draw.text(((width - score_bbox[2]) // 2, height // 2 + 50), score_text, font=text_font, fill="black")
+
+    diploma.save("diplom.png")
+
+
 # Hlavní smyčka hry
 def main():
     phrases = load_phrases("fraze.txt")
@@ -108,8 +158,8 @@ def main():
     score = 0
     results = []
 
-    # Získání času z menu
-    total_time = show_menu()  # Vyběr času
+    # Získání jména a času z menu
+    user_name, total_time = show_menu()
     time_left = total_time  # Počáteční čas
 
     # Nastavení časovače
@@ -126,7 +176,7 @@ def main():
         if current_phrase_index < len(phrases) and time_left > 0:
             phrase, correct_answer = phrases[current_phrase_index]
             question_text = font.render(f"Doplň: {phrase}", True, WHITE)
-            screen.blit(question_text, (50, HEIGHT // 3))
+            screen.blit(question_text, ((WIDTH - question_text.get_width()) // 2, HEIGHT // 3))
 
             # Vykreslení tlačítek
             draw_button(button_i, "I", BLUE)
@@ -140,49 +190,90 @@ def main():
             end_text = font.render(f"Čas vypršel! Skóre: {score}/{len(phrases)}", True, WHITE)
             screen.blit(end_text, (WIDTH // 4, HEIGHT // 3))
             pygame.display.flip()
-            save_results("vysledky.txt", results, score, len(phrases))
-            pygame.time.wait(3000)  # Wait for 3 seconds before quitting
+            save_results("vysledky.txt", user_name, results, score, len(phrases))
+            create_diploma(user_name, score, len(phrases))
+            pygame.time.wait(3000)  # Wait for 3 seconds
             running = False
+
+
 
         else:
+
             # Konec hry po dokončení všech frází
+
             end_text = font.render(f"Hotovo! Skóre: {score}/{len(phrases)}", True, WHITE)
+
             screen.blit(end_text, (WIDTH // 4, HEIGHT // 3))
+
             pygame.display.flip()
-            save_results("vysledky.txt", results, score, len(phrases))
+
+            save_results("vysledky.txt", user_name, results, score, len(phrases))
+
+            create_diploma(user_name, score, len(phrases))
+
             pygame.time.wait(3000)
+
             running = False
 
-        # Události
+            # Události
+
         user_answer = None
+
         for event in pygame.event.get():
+
             if event.type == pygame.QUIT:
                 running = False
+
             if event.type == pygame.MOUSEBUTTONDOWN:
+
                 if button_i.collidepoint(event.pos):
+
                     user_answer = "i"
+
                 elif button_y.collidepoint(event.pos):
+
                     user_answer = "y"
+
             if event.type == pygame.USEREVENT:  # Časovač události
+
                 if time_left > 0:
                     time_left -= 1
 
+            if event.type == pygame.KEYDOWN:
+
+                if event.key == pygame.K_i:
+
+                    user_answer = "i"
+
+                elif event.key == pygame.K_y:
+
+                    user_answer = "y"
+
             if user_answer:
+
                 correct_answer = phrases[current_phrase_index][1].lower()
+
                 user_answer = user_answer.lower()
 
                 if convert_letter(user_answer) == convert_letter(correct_answer):
                     score += 1
+
                 results.append((phrases[current_phrase_index][0], correct_answer, user_answer))
+
                 current_phrase_index += 1
 
         # Aktualizace obrazovky
+
         pygame.display.flip()
+
         clock.tick(60)
 
     pygame.quit()
+
     sys.exit()
 
+
 # Spuštění hry
+
 if __name__ == "__main__":
     main()
