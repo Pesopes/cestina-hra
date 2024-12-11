@@ -21,7 +21,6 @@ GRAY = (50, 50, 50)
 LIGHT_BLUE = (173, 216, 230)
 GREEN = (34, 139, 34)
 
-
 # Načtení dat z fraze.txt
 def load_phrases(file):
     phrases = []
@@ -34,7 +33,6 @@ def load_phrases(file):
         print(f"Soubor {file} nebyl nalezen.")
         sys.exit()
     return phrases
-
 
 # Menu pro výběr času a zadání jména
 def show_menu():
@@ -78,7 +76,6 @@ def show_menu():
                     user_name += event.unicode
         clock.tick(30)
 
-
 # Funkce pro vykreslení tlačítek
 def draw_button(rect, text, color):
     pygame.draw.rect(screen, color, rect, border_radius=20)  # Zakulacené rohy
@@ -88,7 +85,6 @@ def draw_button(rect, text, color):
         (rect.x + (rect.width - text_surface.get_width()) // 2,
          rect.y + (rect.height - text_surface.get_height()) // 2)
     )
-
 
 # Funkce pro zobrazení timeru
 def draw_timer(time_left, total_time):
@@ -105,7 +101,6 @@ def draw_timer(time_left, total_time):
     time_text = font.render(f"Čas: {time_left}s", True, BLACK)
     screen.blit(time_text, (WIDTH // 4 + (progress_width - time_text.get_width()) // 2, 60))
 
-
 # Funkce pro uložení výsledků
 def save_results(file, user_name, results, score, total_phrases):
     with open(file, "w", encoding="utf-8") as f:
@@ -115,7 +110,6 @@ def save_results(file, user_name, results, score, total_phrases):
             result = "správně" if correct_answer == user_answer else "špatně"
             f.write(f"{phrase} -> správně: {correct_answer}, odpověď: {user_answer} ({result})\n")
 
-
 # Funkce pro převod písmen
 def convert_letter(letter):
     if letter in ["y", "ý"]:
@@ -123,7 +117,6 @@ def convert_letter(letter):
     if letter in ["i", "í"]:
         return "i"
     return letter
-
 
 def create_diploma(user_name, score, total_phrases):
     width, height = 800, 600
@@ -148,8 +141,16 @@ def create_diploma(user_name, score, total_phrases):
     draw.text(((width - name_bbox[2]) // 2, height // 2), name_text, font=text_font, fill="black")
     draw.text(((width - score_bbox[2]) // 2, height // 2 + 50), score_text, font=text_font, fill="black")
 
-    diploma.save("diplom.png")
+    diploma_path = "diplom.png"
+    diploma.save(diploma_path)
+    return diploma_path
 
+def open_diploma(diploma_path):
+    diploma_image = pygame.image.load(diploma_path)
+    diploma_screen = pygame.display.set_mode((800, 600))
+    diploma_screen.blit(diploma_image, (0, 0))
+    pygame.display.flip()
+    pygame.time.wait(5000)
 
 # Hlavní smyčka hry
 def main():
@@ -191,89 +192,55 @@ def main():
             screen.blit(end_text, (WIDTH // 4, HEIGHT // 3))
             pygame.display.flip()
             save_results("vysledky.txt", user_name, results, score, len(phrases))
-            create_diploma(user_name, score, len(phrases))
+            diploma_path = create_diploma(user_name, score, len(phrases))
             pygame.time.wait(3000)  # Wait for 3 seconds
-            running = False
-
-
+            open_diploma(diploma_path)
+            # running = False
 
         else:
-
             # Konec hry po dokončení všech frází
-
             end_text = font.render(f"Hotovo! Skóre: {score}/{len(phrases)}", True, WHITE)
-
             screen.blit(end_text, (WIDTH // 4, HEIGHT // 3))
-
             pygame.display.flip()
-
             save_results("vysledky.txt", user_name, results, score, len(phrases))
+            diploma_path = create_diploma(user_name, score, len(phrases))
+            pygame.time.wait(3000)  # Wait for 3 seconds
+            open_diploma(diploma_path)
+            # running = False
 
-            create_diploma(user_name, score, len(phrases))
-
-            pygame.time.wait(3000)
-
-            running = False
-
-            # Události
-
+        # Události
         user_answer = None
-
         for event in pygame.event.get():
-
             if event.type == pygame.QUIT:
                 running = False
-
             if event.type == pygame.MOUSEBUTTONDOWN:
-
                 if button_i.collidepoint(event.pos):
-
                     user_answer = "i"
-
                 elif button_y.collidepoint(event.pos):
-
                     user_answer = "y"
-
             if event.type == pygame.USEREVENT:  # Časovač události
-
                 if time_left > 0:
                     time_left -= 1
-
             if event.type == pygame.KEYDOWN:
-
                 if event.key == pygame.K_i:
-
                     user_answer = "i"
-
                 elif event.key == pygame.K_y:
-
                     user_answer = "y"
-
             if user_answer:
-
                 correct_answer = phrases[current_phrase_index][1].lower()
-
                 user_answer = user_answer.lower()
-
                 if convert_letter(user_answer) == convert_letter(correct_answer):
                     score += 1
-
                 results.append((phrases[current_phrase_index][0], correct_answer, user_answer))
-
                 current_phrase_index += 1
 
         # Aktualizace obrazovky
-
         pygame.display.flip()
-
         clock.tick(60)
 
     pygame.quit()
-
     sys.exit()
 
-
 # Spuštění hry
-
 if __name__ == "__main__":
     main()
