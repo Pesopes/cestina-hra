@@ -1,70 +1,268 @@
-Blb_ student,ý
-B_t zvíře,ý
-V_,y
-P_šou vítr,y
-B_lý kůň,i
-L_ška v lese,y
-Sm_ch zněl hlasitě,i
-V_křik se ozval,y
-D_ky za pomoc,i
-M_ška běží po poli,i
-Velk_ balík,y
-Vš_chni si sedli,i
-Nap_šte odpověď,i
-Zábav_ příběh,y
-Př_šel do třídy,i
-Rozhodl_ se rychle,i
-B_t domov je krásné,y
-Snědl_ oběd rychle,y
-Mal_ kluk se směje,y
-Vyprávěl_ nám pohádku,y
-Nap_sali jsme dopis,i
-Bl_skání hromů bylo hlasité,y
-Strom měl mal_ listy,y
-V_praví nám zajímavý příběh,y
-Obl_kli jsme si nové šaty,y
-Z_tra půjdeme na výlet,i
-St_žovali si na horko,i
-Pod stromem byla klidn_ zahrada,a
-M_kli jsme unaveně,i
-Plav_ pták na vodě,e
-P_še píseň hlasitě,i
-Křiklav_ barvy na obraze,e
-Jezd_l na kole po lese,i
-Prav_ český med,y
-Chtěli b_t venku,y
-Zv_lají hlasitě,y
-Nap_lnili misku ovocem,i
-Chytr_ děti hrály ve škole,y
-L_čili dlouhou nemoc,i
-V_te jak to bylo?,i
-Z_ložitý problém přemýšl_ nad ním,i
-D_razně se vyjádřili,i
-Ostrý hrot jehl_,y
-St_kali na zem vodu,y
-Hl_dka stála na místě,i
-Bl_štivý diamant byl krásný,y
-Skákal do hlubin řek_,y
-Na nádraží jezd_l vlaky,i
-Pohádkov_ princ zachránil princeznu,y
-P_šný král se uklonil,i
-Nap_sali domácí úkol,i
-Z_pali dlouhou dobu,i
-V_křik byl slyšet zdálky,i
-Čekal_ na autobus ve městě,y
-Bež_ po trávníku rychle,i
-D_sný den skončil pozdě,i
-Nap_l nápoj z hrnku,i
-St_pali po strmém kopci,u
-Obdivoval_ krásnou krajinu,i
-Byl_ u divadla na představení,y
-Hádal_ se mezi sebou,y
-M_ření vzdáleností bylo přesné,i
-Představ_l si novou situaci,i
-Sledoval_ tiché hvězdy,i
-Rozl_tli se ptáci po obloze,i
-Obl_bené hračky dětí,y
-Nap_navé dobrodružství,i
-Pamatoval_ si každou chybu,i
-Vybral_ si nejlepší možnost,y
-Šetřil_ na nový dům,i
+vytrval_ let,ý
+zvědav_ žáci,í
+na mot_lích křídlech,ý
+Jiráskov_ Staré pověsti české,y
+se zv_davými dětmi,í
+Frantov_ kamarádi,i
+pštros_ chování,í
+šípkov_ čaj,ý
+lekl_ kapři,í
+sousedov_ psi,i
+s Jirkov_mi rodiči,ý
+hověz_ polévka,í
+ran_ salát,ý
+neznám_ lidé,í
+v Nerudov_ch knihách,ý
+ryb_ šupiny,í
+na zahradníkov_ch záhonech,ý
+černovlas_ chlapci,í
+ve Smetanov_ch operách,ý
+závodníkov_ soupeři,i
+r_zí zlato,y
+na Ladov_ch obrázcích,ý
+o sousedov_ch dětech,ý
+Žižkov_ bojovníci,i
+s neznám_mi lidmi,ý
+holub_ šeď,í
+z červiv_ch hub,ý
+osl_ tvrdohlavost,í
+s játrov_mi knedlíčky,ý
+krokodýl_ slzy,í
+Gottov_ písně,y
+z lidov_ch pohádek,ý
+velryb_ mládě,í
+želv_ krunýř,í
+hm_zí poletování,y
+pav_ oko,í
+kovov_ stůl,ý
+Výlet do Prah_,y
+ž_je ve skromnosti,i
+pln_ ctižádosti,ý
+bez l_tosti,í
+Žluté hrušk_,y
+koš s broskvem_,i
+v ind_ánské vesnici,i
+vkusné halenk_,y
+ch_tré hlavičky,y
+Na zem_,i
+ruce v rukavic_ch,í
+mez_ řečí,i
+ház_ koule,í
+provoz na s_lnicích,i
+S velkou radost_,í
+řídil se radam_,i
+vis_ na tyči,í
+pod l_pami,í
+přinesl květ_ny,i
+vzkaz v láhv_,i
+Na fotograf_i,i
+malujeme temperam_,i
+pan_ kuchařka,í
+plnou sklen_cí,i
+sov_ na stromě,y
+pob_t v Paříži,y
+obraz na zd_,i
+ház_ šiškami,í
+vidím j_řičky,i
+jsou č_perné,i
+papír s notam_,i
+naplnil nůš_,i
+běh po trat_,i
+sed_ na meze,í
+na hráz_,i
+zakr_t plachtami,ý
+Klop_tal do schodů,ý
+pšen_čné těsto,i
+známá p_snička,í
+zpoch_bňoval svědomí,y
+příl_š příšný,i
+netop_ří let,ý
+opadlé květ_,y
+třp_tivé perly,y
+odpouští s_ trest,i
+velký přep_ch,y
+dop_sní papír,i
+ptačí p_rko,í
+trhat petúnie,
+čepeř_l se,i
+kabát z pletov_ny,i
+hrad z p_skovce,í
+širém pol_,i
+kráva s telat_,y
+pod sedadl_,y
+se strašidl_,y
+vzpomínám na dětstv_,í
+s vánočním cukrov_m,í
+s luxusními m_dly,ý
+na neb_,i
+top_me pouze uhlím,í
+chladné podneb_,í
+kamna na dřív_,í
+pod kol_ vozů,y
+pevné zdrav_,í
+na Lab_,i
+hodiny s k_vadlem,y
+nerezové nádob_,í
+království za sedmero řekam_,i
+kočka s koťat_,y
+v příslov_ch je moudrost,í
+na cv_čeních,i
+knedl_ky se zelím,í
+s_lniční provoz,i
+v křov_,í
+ob_lí dozrává,i
+halenka z hedváb_,í
+v ovoc_,i
+se švihadl_, i
+se stébl_obilí,y
+s milými slov_,y
+kobylka s hříbat_,y
+s našimi vnoučat_,y
+v zemědělstv_,í
+kuchyňské nádob_,í
+procházíme údol_m,í
+mnohá úskal_,í
+vůz se čtyřmi kol_,y
+nad um_vadlem,y
+veliká vítězstv_,í
+loďka s vesl_, y
+v ponděl_,í
+práce ve stavebnictv_,í
+velikým bohatstv_m,í
+opalování na slunc_,i
+v každém obydl_,í
+počítáme s počítadl_,y
+dřív_ na topení,í
+Kvetoucí l_pa,í
+na břehu Sázav_, y
+skanzen v Kouřim_,i
+lamp_ svítí,y
+polévka s petržel_,í
+na kraji vs_,i
+o hol_,i
+s vázam_,i
+pestré barv_,y
+slz_,y
+s broskvem_,i
+krátkou chvíl_,i
+jedu do Boleslav_,i
+otep_ slámy,i
+v rokl_ch,í
+pravopisné chyb_,y
+po koupel_,i
+dřevěné stodol_,y
+na dvou židl_ch,í
+nad borovicem_,i
+s povinnostm_,i
+s koženou obuv_,í
+Jedu do Bratislav_,y
+cvičím s obručem_,i
+drahé perl_, y
+na televiz_ se nedívám,i
+lidové pověst_,i
+viděli jsme želv_,y
+dvě veverk_,y
+pilné včel_,y
+nabroušené kos_,y
+mezi horam_,i
+za návs_,í
+vypálené cihl_,y
+přijedeme za tm_,y
+naložené maso v sol_,i
+šálek káv_,y
+na tabul_,i
+důlní jám_,y
+ozdob_ na stromečku,y
+jedu z Morav_,y
+za hodinam_,i
+kontrolovat průkaz_,y
+sklízet snop_ pšenice,y
+břeh s topol_,y
+svinovat motouz_,y
+setkání s cestovatel_,i
+v drah_ch hotelech,y
+nekrmte holub_,y
+připravovat pokrm_,y
+mluvit s přátel_,i
+třpytivé drahokam_,y
+ledové krystal_,y
+nezapomeň úkol_,y
+sl_šet datla,y
+beseda s objevitel_,i
+vysvětlovat nové pojm_,y
+sáček s peněz_,i
+učit psa povel_,y
+hájit své zájm_,y
+vycházka se ps_,y
+kapky proti kašl_,i
+sedět na větv_,i
+přijdu za chvíl_,i
+v_tamíny v mrkvi,i
+sekání otav_,y
+mám velké obav_,y
+vlak do Bratislav_,y
+jedu do Čáslav_,i
+smažit na pánv_,i
+bát se námraz_,y
+váza s pomněnkam_,i
+nakládané houb_,y
+košík s hruškam_,i
+koupit tři konzerv_,y
+dvě otepě slám_,y
+dívat se na telev_zi,i
+hrozny v_nné révy,i
+v_voj života na Zemi,y
+v_loha s kabelkami,y
+prohlížet si žiraf_,y
+b_dlet v Chrudimi,y
+cvičit se šv_hadlem,i
+sklízet na pol_,i
+natírat zábradl_,i
+přivezli uhl_,i
+prosekat se hust_m křovím,y
+brýle se s_lnými skly,i
+pracovat s r_padlem,y
+vařit kyselé zel_,i
+hrát si s poč_tadlem,i
+obchůdky v podloub_,i
+vrhnout kop_,i
+obchod s um_vadly,y
+b_dlet v údolí,y
+tácek s cukrov_m,i
+s objemnými zavazadl_,y
+um_vat nádobí,y
+přip_jet na zdraví,i
+pokoj s křesl_,y
+mávat křídl_,y
+hvězdy na neb_,i
+Chlévy stál_ na celém pozemku,y
+Přepadl_ ho nečekané bolesti,y
+V zahradě rostl_ lípy a kaštany,y
+Děti slyšel_ v lese sýčka,y
+Kaluže jim bránil_ v chůzi,y
+Všude se povaloval_ staré krabice,y
+Trenéři závodníka povzbuzoval_,i
+Motocykly se pravidelně seřizoval_,y
+Umožnil_ nám pokračovat ve studiu,i
+Cestující si moc pochutnal_,i
+Změny dlouho nepřicházel_,y
+Horské vsi neměl_ vlastní školy,y
+Děti se rozhodl_ zůstat doma,y
+Před hotelem stál_ řidiči,i
+Rozhodl_ jsme se odejít,i
+Diváci utíkal_ před tygrem,i
+Vítězové se nepovyšoval_ na poražené,i
+Hrál_ se jeho písně,y
+Proč pokácel_ Lípy,i
+Náhodné známosti představoval_ nebezpečí,y
+Letní dny rychle ubíhal_,y
+Citoslovce se často procvičoval_,y
+Každý den jsme přemýšlel_,i
+Psi pronásledoval_ lišku,i
+Lívance nám chutnal_,y
+Úřady dlouho žádné vyjádření neposlal_,y
+Exekutoři zabavil_ veškerý majetek firmy,i
+Staré budovy se zboural_,y
+Učitelky a žáci pospíchal_ do divadla,i
+Malé čtverce vytvářel_ složitý vzor,i
+V pekárně se prodával_ čerstvé chleby,y
