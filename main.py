@@ -62,7 +62,6 @@ def save_game_stats(stats):
         json.dump(stats, f, ensure_ascii=False, indent=4)
 
 
-# Aktualizace herních statistik
 def update_game_stats(stats, game_data):
     stats["total_games_played"] += 1
     stats["total_time_played"] += game_data['total_time']
@@ -71,8 +70,8 @@ def update_game_stats(stats, game_data):
     stats["game_history"].append(game_data)
 
     # Aktualizace počtu chyb pro jednotlivé fráze
-    for phrase, _, was_correct in game_data['results']:
-        if not was_correct:
+    for phrase, correct_answer, user_answer in game_data['results']:
+        if not user_answer:
             stats["phrase_mistake_count"][phrase] = stats["phrase_mistake_count"].get(phrase, 0) + 1
 
     return stats
@@ -363,7 +362,7 @@ def main():
                 'total_phrases': total_phrases,
                 'score': score,
                 'datetime': datetime.now().isoformat(),
-                'results': [(phrase, correct_answer, score > 0) for phrase, correct_answer, _ in results]
+                'results': [(phrase, correct_answer, correct) for phrase, correct_answer, correct in results]
             }
             game_stats = update_game_stats(game_stats, game_result)
             save_game_stats(game_stats)
@@ -388,22 +387,25 @@ def main():
                     user_answer = "i"
                 elif event.key == pygame.K_y:
                     user_answer = "y"
-            if user_answer:
-                correct_answer = all_phrases[current_phrase_index][1].lower()
-                user_answer = user_answer.lower()
 
-                # Vyhodnocení odpovědi
-                was_correct = convert_letter(user_answer) == convert_letter(correct_answer)
-                total_phrases += 1
-                if was_correct:
-                    score += 1
+        if user_answer is not None:
+            correct_answer = all_phrases[current_phrase_index][1].lower()
+            user_answer = user_answer.lower()
 
-                # Přidat frázi mezi použité
-                used_phrases.add(phrase)
+            # Vyhodnocení odpovědi
+            was_correct = convert_letter(user_answer) == convert_letter(correct_answer)
+            total_phrases += 1
+            if was_correct:
+                score += 1
 
-                # Uložit výsledek
-                results.append((phrase, correct_answer, user_answer))
-                current_phrase_index += 1
+            # Přidat frázi mezi použité
+            used_phrases.add(phrase)
+
+            # Uložit výsledek
+            results.append((phrase, correct_answer, was_correct))
+            current_phrase_index += 1
+
+        user_answer = None
 
         # Aktualizace obrazovky
         pygame.display.flip()
@@ -411,6 +413,7 @@ def main():
 
     pygame.quit()
     sys.exit()
+
 
 
 # Spuštění hry
