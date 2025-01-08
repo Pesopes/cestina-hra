@@ -14,7 +14,7 @@ pygame.init()
 WIDTH, HEIGHT = 1920,1080
 screen = pygame.display.set_mode((WIDTH, HEIGHT),pygame.FULLSCREEN)
 pygame.display.set_caption("Doplňování I/Y")
-font = pygame.font.Font(None, 50)
+font = pygame.font.Font(None, 80)
 clock = pygame.time.Clock()
 
 # Barvy
@@ -98,20 +98,25 @@ def show_menu():
     user_name = ""
     while menu_running:
         screen.fill(LIGHT_BLUE)
+
+        # Center the title text
         title_text = font.render("Vyberte délku hry a zadejte své jméno", True, BLUE)
-        screen.blit(title_text, (WIDTH // 8, HEIGHT // 4))
+        title_rect = title_text.get_rect(center=(WIDTH // 2, HEIGHT // 4))
+        screen.blit(title_text, title_rect)
 
         # Tlačítka pro výběr času
-        button_1min = pygame.Rect(150, 400, 200, 100)
-        button_2min = pygame.Rect(450, 400, 200, 100)
+        button_1min = pygame.Rect(WIDTH // 2 - 500, 400, 400, 200)
+        button_2min = pygame.Rect(WIDTH // 2 + 50, 400, 400, 200)
         draw_button(button_1min, "1 minuta", BLUE)
         draw_button(button_2min, "2 minuty", RED)
 
-        # Textové pole pro zadání jména
-        input_box = pygame.Rect(250, 300, 300, 50)
+        # Textové pole pro zadání jména - centered
+        input_box_width = 300
+        input_box = pygame.Rect(WIDTH // 2 - input_box_width // 2, 300, input_box_width, 50)
         pygame.draw.rect(screen, WHITE, input_box)
         name_surface = font.render(user_name, True, BLACK)
-        screen.blit(name_surface, (input_box.x + 10, input_box.y + 10))
+        name_rect = name_surface.get_rect(center=input_box.center)
+        screen.blit(name_surface, name_rect)
 
         pygame.display.flip()
 
@@ -137,30 +142,38 @@ def show_menu():
 
 # Funkce pro vykreslení tlačítek
 def draw_button(rect, text, color):
-    pygame.draw.rect(screen, color, rect, border_radius=20)  # Zakulacené rohy
+    pygame.draw.rect(screen, color, rect, border_radius=20)
     text_surface = font.render(text, True, WHITE)
-    screen.blit(
-        text_surface,
-        (rect.x + (rect.width - text_surface.get_width()) // 2,
-         rect.y + (rect.height - text_surface.get_height()) // 2)
-    )
+    # Center text in button
+    text_rect = text_surface.get_rect(center=rect.center)
+    screen.blit(text_surface, text_rect)
 
 
 # Funkce pro zobrazení timeru
 def draw_timer(time_left, total_time):
-    progress_width = 500
-    progress_height = 50
-    fill_width = (time_left / total_time) * progress_width
+    progress_width = 800  # Wider progress bar
+    progress_height = 60  # Taller progress bar
 
-    # Draw the background of the timer
-    pygame.draw.rect(screen, WHITE, (WIDTH // 4, 50, progress_width, progress_height))
-    # Draw the filled portion of the timer
-    pygame.draw.rect(screen, GREEN, (WIDTH // 4, 50, fill_width, progress_height))
+    # Center the timer bar perfectly
+    progress_rect = pygame.Rect((WIDTH - progress_width) // 2, 50,
+                                progress_width, progress_height)
 
-    # Draw the time text
+    # Draw background (white bar)
+    pygame.draw.rect(screen, WHITE, progress_rect)
+
+    # Calculate and draw the filled portion (green bar)
+    fill_width = int((time_left / total_time) * progress_width)
+    fill_rect = pygame.Rect((WIDTH - fill_width) // 2, 50,  # Center the fill from left edge
+                            fill_width, progress_height)
+    pygame.draw.rect(screen, GREEN, fill_rect)
+
+    # Draw border around the timer
+    pygame.draw.rect(screen, BLACK, progress_rect, 2)  # 2 pixels wide border
+
+    # Center the time text
     time_text = font.render(f"Čas: {time_left}s", True, BLACK)
-    screen.blit(time_text, (WIDTH // 4 + (progress_width - time_text.get_width()) // 2, 60))
-
+    text_rect = time_text.get_rect(center=(WIDTH // 2, 50 + progress_height // 2))  # Perfectly center the text
+    screen.blit(time_text, text_rect)
 
 # Funkce pro uložení výsledků
 def save_results(file, user_name, results, score, total_phrases):
@@ -314,8 +327,8 @@ def main():
     used_phrases = set()  # Sledování použitých frází
 
     # Tlačítka
-    button_i = pygame.Rect(150, 400, 200, 100)
-    button_y = pygame.Rect(450, 400, 200, 100)
+    button_i = pygame.Rect(WIDTH/2-500, 400, 400, 200)
+    button_y = pygame.Rect(WIDTH/2+50, 400, 400, 200)
 
 
     diploma_active = False
@@ -344,7 +357,8 @@ def main():
                     used_phrases.clear()
 
             question_text = font.render(f"Doplň: {phrase}", True, WHITE)
-            screen.blit(question_text, ((WIDTH - question_text.get_width()) // 2, HEIGHT // 3))
+            question_rect = question_text.get_rect(center=(WIDTH // 2, HEIGHT // 3))
+            screen.blit(question_text, question_rect)
 
             # Vykreslení tlačítek
             draw_button(button_i, "I", BLUE)
@@ -356,7 +370,8 @@ def main():
         else:
             # Konec hry kvůli uplynulému času
             end_text = font.render(f"Čas vypršel! Skóre: {score}/{total_phrases}", True, WHITE)
-            screen.blit(end_text, (WIDTH // 4, HEIGHT // 3))
+            end_rect = end_text.get_rect(center=(WIDTH // 2, HEIGHT // 3))
+            screen.blit(end_text, end_rect)
             pygame.display.flip()
 
             # Uložení výsledků hry
