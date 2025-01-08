@@ -122,7 +122,7 @@ def show_menu():
                 if button_1min.collidepoint(event.pos) and user_name:
                     return user_name, 60  # 1 minuta
                 elif button_2min.collidepoint(event.pos) and user_name:
-                    return user_name, 5  # 2 minuty
+                    return user_name, 5  # TODO: zmenit na 2 minuty
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN:
                     if user_name:
@@ -276,7 +276,7 @@ def create_diploma(user_name, score, total_phrases):
 
 def open_diploma(diploma_path):
     diploma_image = pygame.image.load(diploma_path)
-    diploma_screen = pygame.display.set_mode((800, 600))
+    diploma_screen = pygame.display.set_mode((1200, 900))
     diploma_screen.blit(diploma_image, (0, 0))
     pygame.display.flip()
     pygame.time.wait(5000)
