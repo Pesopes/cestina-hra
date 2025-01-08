@@ -10,7 +10,8 @@ from datetime import datetime
 pygame.init()
 
 # Nastavení okna
-WIDTH, HEIGHT = 800, 600
+#WIDTH, HEIGHT = 800, 600
+WIDTH, HEIGHT = 1920,1080
 screen = pygame.display.set_mode((WIDTH, HEIGHT),pygame.FULLSCREEN)
 pygame.display.set_caption("Doplňování I/Y")
 font = pygame.font.Font(None, 50)
@@ -122,7 +123,7 @@ def show_menu():
                 if button_1min.collidepoint(event.pos) and user_name:
                     return user_name, 60  # 1 minuta
                 elif button_2min.collidepoint(event.pos) and user_name:
-                    return user_name, 120 # 2 minuty
+                    return user_name, 10 # 2 minuty
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN:
                     if user_name:
@@ -182,7 +183,7 @@ def convert_letter(letter):
 
 def create_diploma(user_name, score, total_phrases):
     # Create a white background
-    width, height = 1200, 900
+    width, height = 1920, 1080
     diploma = Image.new("RGB", (width, height), "white")
 
     # If confetti.png is transparent, overlay it on the white background
@@ -274,12 +275,20 @@ def create_diploma(user_name, score, total_phrases):
     return diploma_path
 
 
+diploma_screen = None
+diploma_image = None
 def open_diploma(diploma_path):
+    global diploma_screen
+    global diploma_image
     diploma_image = pygame.image.load(diploma_path)
-    diploma_screen = pygame.display.set_mode((1200, 900),pygame.FULLSCREEN)
+#    pygame.display.quit()
+
+    diploma_screen = pygame.display.set_mode((1920, 1080), pygame.FULLSCREEN)
+    # pygame.display.init()
+
     diploma_screen.blit(diploma_image, (0, 0))
+
     pygame.display.flip()
-    pygame.time.wait(5000)
 
 
 # Hlavní smyčka hry
@@ -309,12 +318,13 @@ def main():
     button_y = pygame.Rect(450, 400, 200, 100)
 
 
-
+    diploma_active = False
     running = True
     while running:
         screen.fill(GRAY)
-
-        if time_left > 0:
+        if diploma_active:
+            diploma_screen.blit(diploma_image, (0, 0))
+        elif time_left > 0:
             # Náhodný výběr fráze
             # Pokud jsou všechny fráze použity, resetovat použité fráze
             if current_phrase_index >= len(all_phrases):
@@ -355,7 +365,6 @@ def main():
             # Vytvoření diplomu
             diploma_path = create_diploma(user_name, score, total_phrases)
             pygame.time.wait(3000)  # Wait for 3 seconds
-            open_diploma(diploma_path)
 
             # Aktualizace herních statistik
             game_result = {
@@ -369,7 +378,8 @@ def main():
             game_stats = update_game_stats(game_stats, game_result)
             save_game_stats(game_stats)
 
-            running = False
+            diploma_active = True
+            open_diploma(diploma_path)
 
         # Události
         user_answer = None
@@ -385,7 +395,10 @@ def main():
                 if time_left > 0:
                     time_left -= 1
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_i:
+                if time_left <= 0 and diploma_active:
+                    diploma_active = False
+                    main()
+                elif event.key == pygame.K_i:
                     user_answer = "i"
                 elif event.key == pygame.K_y:
                     user_answer = "y"
