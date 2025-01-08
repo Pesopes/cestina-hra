@@ -128,7 +128,7 @@ def show_menu():
                 if button_1min.collidepoint(event.pos) and user_name:
                     return user_name, 60  # 1 minuta
                 elif button_2min.collidepoint(event.pos) and user_name:
-                    return user_name, 10 # 2 minuty
+                    return user_name, 120 # 2 minuty
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN:
                     if user_name:
