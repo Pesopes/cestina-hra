@@ -92,6 +92,7 @@ def load_phrases(file):
     return phrases
 
 
+
 # Menu pro výběr času a zadání jména
 def show_menu():
     menu_running = True
@@ -303,9 +304,11 @@ def open_diploma(diploma_path):
 
     pygame.display.flip()
 
-
+previous_answer = None
 # Hlavní smyčka hry
 def main():
+    global previous_answer
+
     # Načtení herních statistik
     game_stats = load_game_stats()
 
@@ -367,6 +370,12 @@ def main():
             # Zobrazení timeru
             draw_timer(time_left, total_time)
 
+            if previous_answer is not None:
+                title_text = font.render("Špatně", True, RED)
+                if previous_answer:
+                    title_text = font.render("Správně", True, GREEN)
+                title_rect = title_text.get_rect(center=(WIDTH // 2, HEIGHT // 4))
+                screen.blit(title_text, title_rect)
         else:
             # Konec hry kvůli uplynulému času
             end_text = font.render(f"Čas vypršel! Skóre: {score}/{total_phrases}", True, WHITE)
@@ -410,7 +419,7 @@ def main():
                 if time_left > 0:
                     time_left -= 1
             if event.type == pygame.KEYDOWN:
-                if time_left <= 0 and diploma_active:
+                if time_left <= 0 and diploma_active and not event.key == pygame.K_i and not event.key == pygame.K_y:
                     diploma_active = False
                     main()
                 elif event.key == pygame.K_i:
@@ -427,6 +436,8 @@ def main():
             total_phrases += 1
             if was_correct:
                 score += 1
+            previous_answer = was_correct
+
 
             # Přidat frázi mezi použité
             used_phrases.add(phrase)
