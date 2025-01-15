@@ -194,6 +194,11 @@ def convert_letter(letter):
         return "i"
     return letter
 
+def generate_filename(user_name):
+    counter = 1
+    while os.path.exists(user_name+str(counter)+".png"):
+        counter += 1
+    return user_name+str(counter)+".png"
 
 def create_diploma(user_name, score, total_phrases):
     # Create a white background
@@ -284,7 +289,7 @@ def create_diploma(user_name, score, total_phrases):
     )
 
     # Save the diploma
-    diploma_path = "diplom.png"
+    diploma_path = generate_filename(user_name)
     diploma.save(diploma_path)
     return diploma_path
 
