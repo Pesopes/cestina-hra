@@ -1,3 +1,5 @@
+import re
+
 import pygame
 import sys
 import random
@@ -138,6 +140,11 @@ def show_menu():
                     user_name = user_name[:-1]
                 else:
                     user_name += event.unicode
+                    # user_name = re.compile("^[a-z]{1,15}$")
+
+                    user_name = user_name[:9]
+
+
         clock.tick(30)
 
 
